@@ -241,16 +241,6 @@ These are tracked in the Performance Lab and Performance Overview components.
 
 ---
 
-## Screenshots
-
-Add screenshots of:
-- Dashboard
-- Dataset Workspace
-- Visualization
-- Performance Lab
-
----
-
 ## Future Improvements
 
 - Additional chart types (heatmap optimization, 3D scatter)
