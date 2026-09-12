@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+# Performance-Critical-Data-Visualization-Dashboard
+>>>>>>> 54037d5a4c5bd813ac6b0a6212acd93a4e70e868
 # DataForge
 
 > Performance-Critical Data Visualization Dashboard
@@ -240,6 +244,7 @@ These are tracked in the Performance Lab and Performance Overview components.
 
 ---
 
+<<<<<<< HEAD
 ## Screenshots
 
 Add screenshots of:
@@ -250,6 +255,8 @@ Add screenshots of:
 
 ---
 
+=======
+>>>>>>> 54037d5a4c5bd813ac6b0a6212acd93a4e70e868
 ## Future Improvements
 
 - Additional chart types (heatmap optimization, 3D scatter)
