@@ -1,0 +1,10 @@
+import { Response } from "express";
+import { AuthRequest } from "../types";
+export declare function createDataset(req: AuthRequest, res: Response): Promise<Response<any, Record<string, any>>>;
+export declare function listDatasets(req: AuthRequest, res: Response): Promise<void>;
+export declare function getDataset(req: AuthRequest, res: Response): Promise<Response<any, Record<string, any>> | undefined>;
+export declare function updateDataset(req: AuthRequest, res: Response): Promise<Response<any, Record<string, any>> | undefined>;
+export declare function duplicateDataset(req: AuthRequest, res: Response): Promise<Response<any, Record<string, any>> | undefined>;
+export declare function deleteDataset(req: AuthRequest, res: Response): Promise<Response<any, Record<string, any>> | undefined>;
+export declare function downloadDataset(req: AuthRequest, res: Response): Promise<Response<any, Record<string, any>> | undefined>;
+export declare function getData(req: AuthRequest, res: Response): Promise<Response<any, Record<string, any>>>;
