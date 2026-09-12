@@ -1,0 +1,14 @@
+node_modules
+npm-debug.log
+.git
+.gitignore
+dist
+uploads
+logs
+*.log
+.env
+.env.*
+Dockerfile
+.dockerignore
+tsconfig.json
+tsconfig.build.json
