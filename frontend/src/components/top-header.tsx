@@ -148,9 +148,7 @@ export function TopHeader({
       setLogoutDialogOpen(false);
       setProfileOpen(false);
 
-      navigate("/login", {
-        replace: true,
-      });
+      navigate("/login", { replace: true });
     } catch (error) {
       console.error(
         "Logout error:",

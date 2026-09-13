@@ -1,5 +1,6 @@
 import {
   Upload,
+  BarChart3,
   Database,
   ArrowUpRight,
 } from "lucide-react";
@@ -52,7 +53,7 @@ export function QuickActions({
         </button>
 
         {/* Create Visualization */}
-        {/* <a
+        <a
           href="/visualizations"
           className="group flex items-center gap-3 rounded-xl border border-border bg-card p-4 text-left shadow-sm transition-all hover:-translate-y-0.5 hover:border-border/60 hover:bg-muted/40 hover:shadow-md"
         >
@@ -71,7 +72,7 @@ export function QuickActions({
           </div>
 
           <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-        </a> */}
+        </a>
 
         {/* Browse Datasets */}
         <a
