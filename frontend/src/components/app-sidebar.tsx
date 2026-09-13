@@ -174,7 +174,7 @@ function Brand({ collapsed }: { collapsed: boolean }) {
       </div>
       {!collapsed && (
         <div className="min-w-0">
-          <div className="text-base font-semibold leading-none tracking-tight text-foreground">Datavora</div>
+          <div className="text-base font-semibold leading-none tracking-tight text-foreground">DataForge</div>
           <div className="text-[10px] text-muted-foreground leading-tight mt-0.5 tracking-wide">Performance-first analytics</div>
         </div>
       )}
