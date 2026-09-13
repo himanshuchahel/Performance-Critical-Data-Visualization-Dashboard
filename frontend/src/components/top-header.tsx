@@ -140,24 +140,21 @@ export function TopHeader({
    * Logout
    */
   const handleLogout = async () => {
-    try {
-      setLoggingOut(true);
+  try {
+    setLoggingOut(true);
 
-      await logout();
+    await logout();
 
-      setLogoutDialogOpen(false);
-      setProfileOpen(false);
+    setLogoutDialogOpen(false);
+    setProfileOpen(false);
 
-      navigate("/login", { replace: true });
-    } catch (error) {
-      console.error(
-        "Logout error:",
-        error
-      );
-    } finally {
-      setLoggingOut(false);
-    }
-  };
+    window.location.href = "/login";
+  } catch (error) {
+    console.error("Logout error:", error);
+  } finally {
+    setLoggingOut(false);
+  }
+};
 
   const showResults =
     searchFocused &&

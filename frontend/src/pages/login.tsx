@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeOff, Lock, Mail, ArrowRight, BarChart3 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -14,10 +14,11 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
+useEffect(() => {
   if (!loading && isAuthenticated) {
     navigate("/", { replace: true });
-    return null;
   }
+}, [loading, isAuthenticated, navigate]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();

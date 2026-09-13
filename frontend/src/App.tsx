@@ -1,8 +1,13 @@
 import { Toaster } from "sonner";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { ThemeProvider } from "@/components/theme-provider";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  Outlet,
+} from "react-router-dom";
 import { PerformanceMetricsProvider } from "@/hooks/usePerformanceMetrics";
-import { AuthProvider } from "@/hooks/useAuth";
+import { AuthProvider, useAuth } from "@/hooks/useAuth";
 import AuthGuard from "@/components/auth-guard";
 import LoginPage from "@/pages/login";
 import RegisterPage from "@/pages/register";
@@ -13,15 +18,36 @@ import VisualizationPage from "@/pages/visualization";
 import PerformancePage from "@/pages/performance";
 import SettingsPage from "@/pages/settings";
 
+function PublicOnlyRoute() {
+  const { isAuthenticated, loading } = useAuth();
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+      </div>
+    );
+  }
+
+  if (isAuthenticated) {
+    return <Navigate to="/" replace />;
+  }
+
+  return <Outlet />;
+}
+
 function App() {
   return (
-      <AuthProvider>
-        <PerformanceMetricsProvider>
+    <AuthProvider>
+      <PerformanceMetricsProvider>
         <Toaster richColors position="top-right" />
+
         <BrowserRouter>
           <Routes>
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
+            <Route element={<PublicOnlyRoute />}>
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+            </Route>
 
             <Route element={<AuthGuard />}>
               <Route path="/" element={<DashboardPage />} />
@@ -37,7 +63,7 @@ function App() {
           </Routes>
         </BrowserRouter>
       </PerformanceMetricsProvider>
-      </AuthProvider>
+    </AuthProvider>
   );
 }
 
