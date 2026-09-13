@@ -15,7 +15,6 @@ import SettingsPage from "@/pages/settings";
 
 function App() {
   return (
-    <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
       <AuthProvider>
         <PerformanceMetricsProvider>
         <Toaster richColors position="top-right" />
@@ -39,7 +38,6 @@ function App() {
         </BrowserRouter>
       </PerformanceMetricsProvider>
       </AuthProvider>
-    </ThemeProvider>
   );
 }
 
