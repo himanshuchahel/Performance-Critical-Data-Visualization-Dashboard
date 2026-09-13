@@ -168,7 +168,7 @@ export function AppSidebar({
 
 function Brand({ collapsed }: { collapsed: boolean }) {
   return (
-    <a href="/" className="flex items-center gap-2.5 px-1 group" aria-label="Datavora Home">
+    <a href="/" className="flex items-center gap-2.5 px-1 group" aria-label="DataForge Home">
       <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary shadow-sm ring-1 ring-primary/10">
         <Sparkles className="h-4 w-4 text-primary-foreground" />
       </div>
