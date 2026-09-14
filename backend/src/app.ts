@@ -8,10 +8,25 @@ import datasetRouter from "./routes/datasets";
 export function createApp() {
   const app = express();
 
-  app.use(cors({
-    origin: env.CLIENT_URL,
+ const allowedOrigins = [
+  "http://localhost:5173",
+  "https://performance-critical-data-visualiza-three.vercel.app",
+  "https://performance-critical-data-git-5e5220-himanshu-chehals-projects.vercel.app",
+  "https://performance-critical-data-visualization-dashboard-en1ol492q.vercel.app",
+];
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error(`CORS blocked: ${origin}`));
+      }
+    },
     credentials: true,
-  }));
+  })
+);
 
   app.use(express.json({ limit: "10mb" }));
   app.use(express.urlencoded({ extended: true, limit: "10mb" }));
