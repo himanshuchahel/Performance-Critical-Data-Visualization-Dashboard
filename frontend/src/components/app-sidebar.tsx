@@ -1,8 +1,6 @@
 import {
   LayoutDashboard,
   Database,
-  ChartNoAxesCombined,
-  Gauge,
   Settings,
   CircleHelp,
   ChevronLeft,
