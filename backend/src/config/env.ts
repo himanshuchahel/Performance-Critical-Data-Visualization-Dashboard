@@ -5,7 +5,7 @@ dotenv.config();
 export const env = {
   PORT: parseInt(process.env.PORT || "3001", 10),
   MONGODB_URI: process.env.MONGODB_URI!,
-  CLIENT_URL: process.env.CLIENT_URL || "http://localhost:5173",
+  CLIENT_URL: process.env.CLIENT_URL || "http://localhost:5173" || "https://performance-critical-data-visualiza-three.vercel.app",
   AUTH_SECRET: process.env.AUTH_SECRET!,
   UPLOAD_DIR: process.env.UPLOAD_DIR || "./uploads",
   NODE_ENV: process.env.NODE_ENV || "development",
