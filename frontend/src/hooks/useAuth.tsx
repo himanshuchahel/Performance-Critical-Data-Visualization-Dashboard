@@ -1,5 +1,16 @@
-import { createContext, useContext, useState, useEffect, useCallback } from "react";
-import { getCurrentUser, login as authLogin, register as authRegister, logout as authLogout } from "@/api/auth";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+} from "react";
+import {
+  getCurrentUser,
+  login as authLogin,
+  register as authRegister,
+  logout as authLogout,
+} from "@/api/auth";
 import type { User } from "@/types";
 
 interface AuthState {
@@ -16,7 +27,11 @@ interface AuthContextValue extends AuthState {
 
 const AuthContext = createContext<AuthContextValue | null>(null);
 
-export function AuthProvider({ children }: { children: React.ReactNode }) {
+export function AuthProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -24,10 +39,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     let cancelled = false;
+
     setLoading(true);
+
     getCurrentUser()
       .then((res) => {
         if (cancelled) return;
+
         if (res.success && res.user) {
           setUser(res.user);
         } else {
@@ -36,46 +54,75 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       })
       .catch(() => {
         if (cancelled) return;
-        // 401 or any failure = not logged in; do not show scary error
         setUser(null);
       })
       .finally(() => {
-        if (!cancelled) setLoading(false);
+        if (!cancelled) {
+          setLoading(false);
+        }
       });
-    return () => { cancelled = true; };
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
-  const login = useCallback(async (email: string, password: string) => {
-    const res = await authLogin({ email, password });
-    if (res.success && res.user) {
-      setUser(res.user);
-    } else {
+  const login = useCallback(
+    async (email: string, password: string) => {
+      const res = await authLogin({
+        email,
+        password,
+      });
+
+      if (res.success && res.user) {
+        setUser(res.user);
+        return;
+      }
+
       throw new Error(res.message || "Login failed");
-    }
-  }, []);
+    },
+    []
+  );
 
-  const register = useCallback(async (name: string, email: string, password: string) => {
-    const res = await authRegister({ name, email, password });
-    if (res.success && res.user) {
-      setUser(res.user);
-    } else {
-      // If backend does not auto-authenticate, redirect to login handled by caller
-      // Still throw so caller can decide
+  const register = useCallback(
+    async (name: string, email: string, password: string) => {
+      const res = await authRegister({
+        name,
+        email,
+        password,
+      });
+
+      if (res.success) {
+        // Registration does not authenticate the user.
+        // User will be redirected to Login.
+        return;
+      }
+
       throw new Error(res.message || "Registration failed");
-    }
-  }, []);
+    },
+    []
+  );
 
   const logout = useCallback(async () => {
-  try {
-    await authLogout();
-  } finally {
-    setUser(null);
-    setLoading(false);
-  }
-}, []);
+    try {
+      await authLogout();
+    } finally {
+      setUser(null);
+      setLoading(false);
+    }
+  }, []);
 
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated, loading, login, register, logout }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        isAuthenticated,
+        loading,
+        login,
+        register,
+        logout,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
@@ -83,6 +130,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
 export function useAuth() {
   const ctx = useContext(AuthContext);
-  if (!ctx) throw new Error("useAuth must be used inside AuthProvider");
+
+  if (!ctx) {
+    throw new Error("useAuth must be used inside AuthProvider");
+  }
+
   return ctx;
 }
